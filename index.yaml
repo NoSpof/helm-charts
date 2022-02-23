@@ -3,7 +3,7 @@ entries:
   hcloud-csi:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-02-23T10:39:33.893863+01:00"
+    created: "2022-02-23T11:54:41.5560324+01:00"
     description: Deploy hcloud csi for use volume in hetzner cloud
     digest: 0f1b0d5b080abd78449a676ceebccc07b67e41ece1a0e86400f070256e2135e8
     name: hcloud-csi
@@ -13,7 +13,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-02-23T10:39:33.893863+01:00"
+    created: "2022-02-23T11:54:41.5555329+01:00"
     description: Deploy hcloud csi for use volume in hetzner cloud
     digest: a0f19224f4d44ae5b351296b589b681a57318b7845e5fec6198880dde800a5bd
     name: hcloud-csi
@@ -23,7 +23,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-02-23T10:39:33.8933351+01:00"
+    created: "2022-02-23T11:54:41.5550232+01:00"
     description: A Helm chart for Kubernetes
     digest: 0cabef89c61ede5e1fbc8fe81c8c5fdf629cdadb14a8e81ba8d0863fe3b86b56
     name: hcloud-csi
@@ -31,4 +31,15 @@ entries:
     urls:
     - https://nospof.github.io/helm-charts/hcloud-csi-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-23T10:39:33.8927946+01:00"
+  hcloud-smb:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-02-23T11:54:41.5560324+01:00"
+    description: Deploy secret for smb chcloud
+    digest: 74623c2121a8c4d1432f261029c52d0ec1770d595dcab99272d376d835e1853b
+    name: hcloud-smb
+    type: application
+    urls:
+    - https://nospof.github.io/helm-charts/hcloud-smb-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-02-23T11:54:41.5550232+01:00"

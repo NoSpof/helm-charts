@@ -1,0 +1,8 @@
+apiVersion: v2
+name: rolebinding
+description: create a binding from user or sa
+type: application
+
+version: 0.1.0
+
+appVersion: "1.16.0"

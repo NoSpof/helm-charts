@@ -2,5 +2,5 @@ apiVersion: v2
 name: hcloud-csi
 description: Deploy hcloud csi for use volume in hetzner cloud
 type: application
-version: 0.1.1
+version: 0.1.2
 appVersion: "1.16.0"

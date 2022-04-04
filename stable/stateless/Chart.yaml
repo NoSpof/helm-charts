@@ -1,0 +1,11 @@
+apiVersion: v2
+name: stateless
+description: deploy stateless workload
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
+keywords:
+  - "deploy"
+  - "stateless"
+maintainers:
+  - name: seitosan

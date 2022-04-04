@@ -1,0 +1,49 @@
+{{- $apiV1 := false -}}
+{{- $apiVersion := "extensions/v1beta1" -}}
+{{- if and (.Capabilities.APIVersions.Has "networking.k8s.io/v1") (semverCompare ">= v1.19.0-0" .Capabilities.KubeVersion.Version) -}}
+  {{- $apiVersion = "networking.k8s.io/v1" -}}
+  {{- $apiV1 = true -}}
+{{- else if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" -}}
+  {{- $apiVersion = "networking.k8s.io/v1beta1" -}}
+{{- else -}}
+  {{- $apiVersion = "extensions/v1beta1" -}}
+{{- end }}
+{{- $chartname := .Chart.Name }}
+{{- $chartversion := .Chart.Version }}
+{{- range $service := .Values.services }}
+{{if $service.ingress }}
+---
+apiVersion: {{ $apiVersion }}
+kind: Ingress
+metadata:
+  name: {{ $service.name }}
+  labels:
+    chart: "{{ $chartname }}-{{ $chartversion | replace "+" "_" }}"
+  annotations:
+    {{- range $key, $value := $service.ingress.annotations }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
+spec:
+  rules:
+    {{- range $host := $service.ingress.hosts }}
+    - host: {{ $host.fqdn | quote }}
+      http:
+        paths:
+        {{- range $path := $host.paths}}
+        - backend:
+          {{- if $apiV1 }}
+            service:
+              name: {{ $service.name }}
+              port: 
+                number: {{ $path.port  | int}}
+          pathType: Prefix
+          {{- else }}
+            serviceName: {{ $service.name }}
+            servicePort: {{ $path.port  | int}}
+          {{ end }}
+          path: {{ $path.uri | quote }}
+        {{end}}
+    {{end}}
+---
+{{end}}
+{{end}}

@@ -1,24 +1,33 @@
-#services:
-#  - name: nginx
-#    replicaCount: 1
-#    enabled: true
-#    image: nginx:latest
-#    ingress:
-#      annotations:
-#        kubernetes.io/ingress.class: "nginx"
-#      hosts: 
-#        - fqdn: exemple.nospof.cloud
-#          paths:
-#            - port: 80
-#              uri: /
-#    service:
-#      internalPort: 
-#      - 80
-#    resources:
-#      limits:
-#        cpu: 0.2
-#        memory: 256Mi
-#      requests: 
-#        cpu: 0.1
-#        memory: 128Mi
-#env: dev
+services:
+ - name: nginx
+   replicaCount: 1
+   enabled: true
+   env:
+    toto: tata
+    confidential:
+      - exposed: password
+        secretName: mysecret
+        key: password
+      - exposed: username
+        secretName: mysecret
+        key: username
+   image: nginx:latest
+   ingress:
+     annotations:
+       kubernetes.io/ingress.class: "nginx"
+     hosts: 
+       - fqdn: exemple.nospof.cloud
+         paths:
+           - port: 80
+             uri: /
+   service:
+     internalPort: 
+     - 80
+   resources:
+     limits:
+       cpu: 0.2
+       memory: 256Mi
+     requests: 
+       cpu: 0.1
+       memory: 128Mi
+env: dev

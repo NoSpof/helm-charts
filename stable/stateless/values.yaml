@@ -4,13 +4,13 @@ services:
    enabled: true
    env:
     toto: tata
-    confidential:
-      - exposed: password
-        secretName: mysecret
-        key: password
-      - exposed: username
-        secretName: mysecret
-        key: username
+   confidential:
+    - exposed: password
+      secretName: mysecret
+      key: password
+    - exposed: username
+      secretName: mysecret
+      key: username
    image: nginx:latest
    ingress:
      annotations:

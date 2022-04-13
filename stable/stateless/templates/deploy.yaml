@@ -62,10 +62,10 @@ spec:
           - {{ $args | quote}}
         {{ end }}
         {{end}}
-        {{ if $service.env }}
+        {{ if or ($service.env) ($service.confidential) }}
         env:
-        {{ if $service.env.confidential }} 
-        {{- range  $confidential := $service.env.confidential}}
+        {{ if $service.confidential }} 
+        {{- range  $confidential := $service.confidential}}
         - name: {{ $confidential.exposed | quote }}
           valueFrom:
             secretKeyRef:

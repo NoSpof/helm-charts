@@ -13,13 +13,15 @@ services:
       key: username
    image: nginx:latest
    ingress:
-     annotations:
-       kubernetes.io/ingress.class: "nginx"
-     hosts: 
-       - fqdn: exemple.nospof.cloud
-         paths:
-           - port: 80
-             uri: /
+    tls:
+      secretName: testing
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+    hosts: 
+      - fqdn: exemple.nospof.cloud
+        paths:
+          - port: 80
+            uri: /
    service:
      internalPort: 
      - 80

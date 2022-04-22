@@ -24,6 +24,14 @@ metadata:
       {{ $key }}: {{ $value | quote }}
     {{- end }}
 spec:
+  {{if $service.ingress.tls }}
+  tls:
+  - hosts:
+  {{- range $host := $service.ingress.hosts }}
+    - {{ $host.fqdn | quote }}
+  {{end}}
+    secretName: {{ $service.ingress.tls.secretName }}
+  {{end}}
   rules:
     {{- range $host := $service.ingress.hosts }}
     - host: {{ $host.fqdn | quote }}

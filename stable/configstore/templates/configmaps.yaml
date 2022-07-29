@@ -1,0 +1,13 @@
+{{- range $property := .Values.PropertyList }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ $property.name }}
+  namespace: {{ $property.namespace }}
+data:
+{{- range $name, $config := $property.items  }}
+  {{ $name }}: {{ $config | quote }}
+{{- end }}
+---
+{{ end -}}

@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: {{ .Values.appName}}
+  namespace: {{ .Values.contextId }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    contextId: {{ .Values.contextId }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.appName}}
+  replicas: {{ default 1 .Values.replicaCount | int }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName}}
+    spec:
+      imagePullSecrets: 
+        - name: {{ .Values.pullSecrets}}
+      containers:
+      - name: {{ .Values.appName}}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ .Values.internalPort | int }}
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: {{ .Values.internalPort | int }}
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: {{ .Values.internalPort | int }}
+        resources:
+          requests:
+            cpu: {{ .Values.resources.cpu}}
+            memory: {{ .Values.resources.ram}}
+          limits:
+            cpu: {{ .Values.resources.cpu}}
+            memory: {{ .Values.resources.ram}}
+---

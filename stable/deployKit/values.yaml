@@ -1,0 +1,11 @@
+appName:
+image:
+replicaCount: 
+internalPort: 
+pullSecrets: 
+contextId: 
+resources:
+  cpu:
+  ram: 
+dependencies:
+  mysql:

@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName}}
+  namespace: {{ .Values.contextId}}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    contextId: {{ .Values.contextId }}
+spec:
+  type: "ClusterIP"
+  ports:
+  - port: {{ .Values.internalPort}}
+    targetPort: {{ .Values.internalPort }}
+    protocol: TCP
+  selector:
+    app: {{ .Values.appName}}
+---

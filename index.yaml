@@ -3,40 +3,40 @@ entries:
   argocd-application:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1440498+02:00"
+    created: "2024-10-28T16:33:32.2387289+01:00"
     description: deploy application about argocd
     digest: 3439056c11a11021f932c610db89562dd4f31c83b2c67bdf497a738a0bcbf996
     name: argocd-application
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/argocd-application-0.1.0.tgz
+    - argocd-application-0.1.0.tgz
     version: 0.1.0
   clusterIssuer:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1450498+02:00"
+    created: "2024-10-28T16:33:32.2387289+01:00"
     description: deploy a cluster Issuer for certmanager
     digest: 7379f792249febc910cec0688010a3fa97d1407c17b04c1cea58efc1683586e6
     name: clusterIssuer
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/clusterIssuer-0.1.0.tgz
+    - clusterIssuer-0.1.0.tgz
     version: 0.1.0
   configstore:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1455497+02:00"
+    created: "2024-10-28T16:33:32.2387289+01:00"
     description: A Helm chart for Kubernetes
     digest: b167e356dfd49de41bc2e251437955267e4c6574d547027b3f034942e3d7213b
     name: configstore
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/configstore-0.1.0.tgz
+    - configstore-0.1.0.tgz
     version: 0.1.0
   cronjobs:
   - apiVersion: v2
     appVersion: 0.2.0
-    created: "2022-08-23T16:51:43.1455497+02:00"
+    created: "2024-10-28T16:33:32.2387289+01:00"
     description: deploy a cronjobs inside namespace
     digest: 72b1bbcec225165675a2f94c0434b04a5f5d7a1501ff58e8b912d96c34bc3b89
     maintainers:
@@ -44,65 +44,78 @@ entries:
     name: cronjobs
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/cronjobs-0.2.0.tgz
+    - cronjobs-0.2.0.tgz
     version: 0.2.0
+  deploykit:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-10-28T16:33:32.2387289+01:00"
+    description: Deploy application stateless in heimdall
+    digest: 0cd59d5fb202aff9509358a4dc64646303372f4fac842963e18eeaf7351aa081
+    maintainers:
+    - name: nospofcloud@gmail.com
+    name: deploykit
+    type: application
+    urls:
+    - deploykit-0.1.2.tgz
+    version: 0.1.2
   hcloud-csi:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1480426+02:00"
+    created: "2024-10-28T16:33:32.2403148+01:00"
     description: Deploy hcloud csi for use volume in hetzner cloud
     digest: 0f1b0d5b080abd78449a676ceebccc07b67e41ece1a0e86400f070256e2135e8
     name: hcloud-csi
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/hcloud-csi-0.1.2.tgz
+    - hcloud-csi-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1470495+02:00"
+    created: "2024-10-28T16:33:32.2403148+01:00"
     description: Deploy hcloud csi for use volume in hetzner cloud
     digest: a0f19224f4d44ae5b351296b589b681a57318b7845e5fec6198880dde800a5bd
     name: hcloud-csi
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/hcloud-csi-0.1.1.tgz
+    - hcloud-csi-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1465496+02:00"
+    created: "2024-10-28T16:33:32.2387289+01:00"
     description: A Helm chart for Kubernetes
     digest: 0cabef89c61ede5e1fbc8fe81c8c5fdf629cdadb14a8e81ba8d0863fe3b86b56
     name: hcloud-csi
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/hcloud-csi-0.1.0.tgz
+    - hcloud-csi-0.1.0.tgz
     version: 0.1.0
   hcloud-smb:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1485495+02:00"
+    created: "2024-10-28T16:33:32.2403148+01:00"
     description: Deploy secret for smb chcloud
     digest: 74623c2121a8c4d1432f261029c52d0ec1770d595dcab99272d376d835e1853b
     name: hcloud-smb
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/hcloud-smb-0.1.0.tgz
+    - hcloud-smb-0.1.0.tgz
     version: 0.1.0
   rolebinding:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1490503+02:00"
+    created: "2024-10-28T16:33:32.2403148+01:00"
     description: create a binding from user or sa
     digest: faae9f6dbaa0bda4f5a2baf89d100b7ef8a36235747cb4fa6f129ca3381147f3
     name: rolebinding
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/rolebinding-0.1.0.tgz
+    - rolebinding-0.1.0.tgz
     version: 0.1.0
   stateless:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1530496+02:00"
+    created: "2024-10-28T16:33:32.2413184+01:00"
     description: deploy stateless workload
     digest: a122d52829e718c9478cb774ad2aa2559f3fea3bcdf50f4a0d40e033a55349fa
     keywords:
@@ -113,11 +126,11 @@ entries:
     name: stateless
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/stateless-0.1.3.tgz
+    - stateless-0.1.3.tgz
     version: 0.1.3
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1520497+02:00"
+    created: "2024-10-28T16:33:32.2413184+01:00"
     description: deploy stateless workload
     digest: 5c3e51946e4d19027473cda9a45586168e02a08703ebe5367add98f669b656c6
     keywords:
@@ -128,11 +141,11 @@ entries:
     name: stateless
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/stateless-0.1.2.tgz
+    - stateless-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1510426+02:00"
+    created: "2024-10-28T16:33:32.2413184+01:00"
     description: deploy stateless workload
     digest: 84755fdb260971a7e0ed4fe33ea04bbb8ed3299e7beeb4c9e059bdda2896b125
     keywords:
@@ -143,11 +156,11 @@ entries:
     name: stateless
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/stateless-0.1.1.tgz
+    - stateless-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-23T16:51:43.1500444+02:00"
+    created: "2024-10-28T16:33:32.2403148+01:00"
     description: deploy stateless workload
     digest: ed0a8ebfbacf7b4247151b3bb772bdf770913dc1e07222fbd703a678ea12bf87
     keywords:
@@ -158,6 +171,6 @@ entries:
     name: stateless
     type: application
     urls:
-    - https://nospof.github.io/helm-charts/stateless-0.1.0.tgz
+    - stateless-0.1.0.tgz
     version: 0.1.0
-generated: "2022-08-23T16:51:43.14205+02:00"
+generated: "2024-10-28T16:33:32.2377133+01:00"

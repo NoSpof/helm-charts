@@ -19,15 +19,15 @@ spec:
         image: "{{ .Values.image }}"
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: {{ .Values.service.internalPort | int }}
+        - containerPort: {{ .Values.internalPort | int }}
         livenessProbe:
           httpGet:
             path: /
-            port: {{ .Values.service.internalPort | int }}
+            port: {{ .Values.internalPort | int }}
         readinessProbe:
           httpGet:
             path: /
-            port: {{ .Values.service.internalPort | int }}
+            port: {{ .Values.internalPort | int }}
         resources:
           limits:
             cpu: {{ .Values.resources.cpu | int }}

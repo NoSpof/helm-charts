@@ -1,25 +1,18 @@
-{{- $chartname := .Chart.Name }}
-{{- $chartversion := .Chart.Version }}
-{{- range $service := .Values.services }}
-{{- if $service.service }}
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $service.name}}
+  name: {{ .Values.applicationName }}
   labels:
     chart: "{{ $chartname }}-{{ $chartversion | replace "+" "_" }}"
 spec:
   type: ClusterIP
   ports:
-  {{ range $service.service.internalPort }}
-  - port:  {{  . | int }}
-    targetPort:  {{  . | int }}
+  - port:  {{  .Values.internalPort | int }}
+    targetPort:  {{  .Values.internalPort | int }}
     protocol: TCP
-    name: "{{ $service.name }}-{{ . }}"
-  {{end}}
+    name: {{ .Values.applicationName  }}
   selector:
-    app: {{ $service.name}}
+    app: {{ .Values.applicationName }}
 ---
-{{end}}
-{{end}}

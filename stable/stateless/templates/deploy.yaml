@@ -1,98 +1,37 @@
-{{- $chartname := .Chart.Name }}
-{{- $chartversion := .Chart.Version }}
-{{- range $service := .Values.services }}
-{{- if $service.enabled }}
----
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name:  {{ $service.name}}
+  name: {{ .Values.applicationName}}
   labels:
-    chart: "{{ $chartname }}-{{ $chartversion | replace "+" "_" }}"
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   selector:
     matchLabels:
-      app:  {{ $service.name}}
-  replicas: {{ default 1 $service.replicaCount | int }}
+      app: {{ .Values.applicationName}}
+  replicas: {{ default 1 .Values.replicaCount | int }}
   template:
     metadata:
       labels:
-        app:  {{ $service.name}}
+        app: {{ .Values.applicationName}}
     spec:
-      {{ if $service.storage }}
-      volumes:
-      {{ range $index,$spec := $service.storage }}
-      - name: {{ $service.name }}{{ $index }}
-        persistentVolumeClaim:
-            claimName: {{ $service.name }}{{ $index }}
-      {{ end }}
-      {{ end }}
       containers:
-      - name: "{{ $chartname }}-{{ $service.name}}"
-        image: "{{ $service.image }}"
-        {{if $service.security}}
-        securityContext:
-          {{ if $service.sysctls }}
-          sysctls:
-            {{ range $key,$value := $service.sysctls }}
-            - name: {{ $key }}
-              value: {{ $value | quote }}
-            {{ end }}
-          {{end}}
-          {{ if $service.capabilities }}
-            capabilities:
-              {{if $service.capabilities.add }}
-              add:
-                {{range $capadd := $service.capabilities.add }}
-                - {{ $capadd }}
-                {{end}}
-              {{end}}
-          {{end}}
-        {{ end }}
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image }}"
         imagePullPolicy: IfNotPresent
-        {{ if $service.commands}}
-        command: 
-        {{range $cmd := $service.commands}}
-          - {{ $cmd | quote}}
-        {{ end }}
-        {{end}}
-        {{ if $service.args}}
-        args: 
-        {{range $args := $service.args}}
-          - {{ $args | quote}}
-        {{ end }}
-        {{end}}
-        {{ if or ($service.env) ($service.confidential) }}
-        env:
-        {{ if $service.confidential }} 
-        {{- range  $confidential := $service.confidential}}
-        - name: {{ $confidential.exposed | quote }}
-          valueFrom:
-            secretKeyRef:
-              name: {{ $confidential.secretName | quote }}
-              key: {{ $confidential.key | quote }}
-        {{end}}
-        {{end}}
-        {{- range $key,$value := $service.env }}
-        - name: {{ $key | quote }}
-          value: {{ $value | quote }}
-        {{end}}
-        {{end}}
-        {{ if $service.service }}
         ports:
-        {{ range $service.service.internalPort }}
-        - containerPort: {{  . | int }}
-        {{ end }}
-        {{ end }}
-        {{ if $service.storage }}
-        volumeMounts:
-        {{ range $index,$spec := $service.storage }}
-        - mountPath: {{ $spec.path | quote }}
-          name: {{ $service.name }}{{ $index }}
-        {{ end }}
-        {{ end }}
+        - containerPort: {{ .Values.service.internalPort | int }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.internalPort | int }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.internalPort | int }}
         resources:
-{{ toYaml $service.resources | indent 10 }}
----
-{{ end }}
-{{ end }}
+          limits:
+            cpu: {{ .Values.resources.cpu | int }}
+            memory: {{ .Values.resources.memory | int }}
+          requests:
+            cpu: {{ .Values.resources.cpu | int }}
+            memory: {{ .Values.resources.memory | int }}

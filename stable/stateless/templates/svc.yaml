@@ -4,8 +4,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.applicationName }}
-  labels:
-    chart: "{{ $chartname }}-{{ $chartversion | replace "+" "_" }}"
 spec:
   type: ClusterIP
   ports:

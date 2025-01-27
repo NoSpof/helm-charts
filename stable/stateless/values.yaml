@@ -1,6 +1,7 @@
 applicationName:
 replicaCount:
 image:
+revision:
 internalPort:
 resources: 
   cpu:

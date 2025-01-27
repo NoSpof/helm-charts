@@ -3,7 +3,7 @@ kind: Deployment
 metadata: 
   name: {{ .Values.applicationName}}
   labels:
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    version: {{ .Values.revision }}
 spec:
   selector:
     matchLabels:
@@ -15,7 +15,7 @@ spec:
         app: {{ .Values.applicationName}}
     spec:
       containers:
-      - name: {{ .Chart.Name }}
+      - name: {{ .Values.applicationName }}
         image: "{{ .Values.image }}"
         imagePullPolicy: IfNotPresent
         ports:

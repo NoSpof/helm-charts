@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: {{ .Values.applicationName}}
+  name: {{ .Values.application.name }}
   labels:
-    version: {{ .Values.revision }}
+    job: {{ .Values.application.jobId }}
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.applicationName}}
-  replicas: {{ default 1 .Values.replicaCount | int }}
+      app: {{ .Values.application.name }}
+  replicas: {{ default 1 .Values.application.count | int }}
   template:
     metadata:
       labels:
-        app: {{ .Values.applicationName}}
+        app: {{ .Values.application.name }}
     spec:
       containers:
-      - name: {{ .Values.applicationName }}
-        image: "{{ .Values.image }}"
+      - name: {{ .Values.application.name  }}
+        image: "{{ .Values.application.image }}"
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: {{ .Values.internalPort | int }}
+        - containerPort: {{ .Values.application.port | int }}
         livenessProbe:
           httpGet:
             path: /
-            port: {{ .Values.internalPort | int }}
+            port: {{ .Values.application.port | int }}
         readinessProbe:
           httpGet:
             path: /
-            port: {{ .Values.internalPort | int }}
+            port: {{ .Values.application.port | int }}
         resources:
           limits:
             cpu: {{ .Values.resources.cpu | int }}

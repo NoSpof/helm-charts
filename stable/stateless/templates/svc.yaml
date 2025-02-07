@@ -3,14 +3,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.applicationName }}
+  name: {{ .Values.application.name }}
 spec:
   type: ClusterIP
   ports:
-  - port:  {{  .Values.internalPort | int }}
-    targetPort:  {{  .Values.internalPort | int }}
+  - port:  {{  .Values.application.port | int }}
+    targetPort:  {{  .Values.application.port | int }}
     protocol: TCP
-    name: {{ .Values.applicationName  }}
+    name: {{ .Values.application.name  }}
   selector:
-    app: {{ .Values.applicationName }}
+    app: {{ .Values.application.name }}
 ---

@@ -1,9 +1,12 @@
-applicationName:
-replicaCount:
-image:
-revision:
-internalPort:
-resources: 
-  cpu:
-  memory:
-pullSecrets:
+application:
+  name:
+  count:
+  port:
+  image:
+  jobId:
+context:
+  name:
+  id:
+resources:
+  memory: 
+  cpu: 

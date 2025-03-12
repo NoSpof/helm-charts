@@ -4,3 +4,4 @@ metadata:
   name: alb
 spec:
   scheme: internet-facing
+  certificateARNs: {{ .Values.ingressParams.certificateARNs }}]

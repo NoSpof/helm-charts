@@ -2,5 +2,5 @@ apiVersion: v2
 name: eks_automode_init
 description: A Helm chart for Kubernetes to deploy init params for Automode EKS cluster.
 type: application
-version: 0.1.0
+version: 0.1.2
 appVersion: "1.16.0"
